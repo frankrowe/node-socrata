@@ -3,6 +3,7 @@ var request = require('request');
 function Dataset() {
   this.host = "http://www.socrata.com";
   this.auth = false;
+  this.apptoken = false;
 }
 
 Dataset.prototype.setHost = function(host){
@@ -73,11 +74,15 @@ Dataset.prototype.rowsURL = function() {
 
 // And the columns
 Dataset.prototype.columnsURL = function() {
-  return this.jsonWrap("/views/" + this.uid + "/columns.json");
+  var url = this.jsonWrap("/views/" + this.uid + "/columns.json");
+  if(this.apptoken){
+    url += "?$$app_token=" + this.apptoken;
+  } 
+  return url;
 };
 
 Dataset.prototype.getColumns = function(callback){
-  var url = this.columnsURL() + "?$$app_token=" + this.apptoken;
+  var url = this.columnsURL();
   request({
       url: url,
       json: true,
@@ -99,7 +104,11 @@ Dataset.prototype.shortURL = function() {
 };
 
 Dataset.prototype.apiURL = function() {
-  return this.host + "/resource/" + this.uid + ".json?$$app_token=" + this.apptoken;
+  var url = this.host + "/resource/" + this.uid + ".json?";
+  if(this.apptoken){
+    url += "$$app_token=" + this.apptoken;
+  }
+  return url;
 };
 
 Dataset.prototype.queryURL = function(query){
