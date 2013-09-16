@@ -2,6 +2,7 @@ var request = require('request');
 
 function Dataset() {
   this.host = "http://www.socrata.com";
+  this.auth = false;
 }
 
 Dataset.prototype.setHost = function(host){
@@ -17,9 +18,11 @@ Dataset.prototype.setAppToken = function(apptoken){
 };
 
 Dataset.prototype.setCredentials = function(username, password){
-  this.username = username;
-  this.password = password;
-}
+  this.auth = {
+    username: username,
+    password: password
+  };
+};
 
 // Given a string, look for a properly formatted UID. 
 //  returns: false on failure
@@ -76,12 +79,11 @@ Dataset.prototype.columnsURL = function() {
 Dataset.prototype.getColumns = function(callback){
   var url = this.columnsURL() + "?$$app_token=" + this.apptoken;
   request({
-    url: url,
-    json: true,
-    auth: {
-      user: this.username,
-      pass: this.password
-    }}, function (error, response, body) {
+      url: url,
+      json: true,
+      auth: this.auth
+    }, 
+    function (error, response, body) {
       if (!error && response.statusCode == 200) {
         callback(body);
       } else {
@@ -107,12 +109,11 @@ Dataset.prototype.queryURL = function(query){
 Dataset.prototype.query = function(query, callback){
   var url = this.queryURL(query);
   request({
-    url: url,
-    json: true,
-    auth: {
-      user: this.username,
-      pass: this.password
-    }}, function (error, response, body) {
+      url: url,
+      json: true,
+      auth: this.auth
+    }, 
+    function (error, response, body) {
       if (!error && response.statusCode == 200) {
         callback(body);
       } else {
