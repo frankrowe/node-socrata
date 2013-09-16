@@ -1,8 +1,8 @@
 node-socrata
 ===========
 
-Node Library to interact with the [http://dev.socrata.com/consumers/getting-started](Socrata Open Data API).
-Alpha version 0.0.1
+* Node Library to interact with the [Socrata Open Data API](http://dev.socrata.com/consumers/getting-started).
+* Alpha version 0.0.1
 
 Example
 
