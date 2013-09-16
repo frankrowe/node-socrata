@@ -1,0 +1,23 @@
+{
+  "name": "node-socrata",
+  "version": "0.0.1",
+  "description": "Query the Socrata Open Data API",
+  "main": "Socrata.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frankrowe/node-socrata.git"
+  },
+  "keywords": [
+    "socrata"
+  ],
+  "author": "Frank Rowe",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "76cb3e3d82dd37f2526382aef11e5386f8acc13d",
+  "dependencies": {
+    "request": "~2.27.0"
+  }
+}
