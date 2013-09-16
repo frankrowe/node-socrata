@@ -1,15 +1,25 @@
 node-socrata
 ===========
 
-*** Example
+Example
 
 ```javascript
-var socrataDataset = new Socrata.Dataset();
-socrataDataset.setHost("https://data.maryland.gov");
-socrataDataset.setAppToken(YOUR_APP_TOKEMN);
-socrataDataset.setCredentials(username, password);
+var Socrata = require('./Socrata'),
 
-socrataDataset.query("$select=column1&$where=column2='something'" function(data){
+var dataset = new Socrata.Dataset();
+dataset.setHost("https://data.maryland.gov");
+dataset.setUID("xxxx-xxxx");
+
+//if dataset is private
+dataset.setAppToken(YOUR_APP_TOKEN);
+dataset.setCredentials(username, password);
+
+dataset.query("$select=column1&$where=column2='something'" function(data){
 
 });
+
+dataset.getColumns(function(columns){
+
+});
+
 ```
