@@ -26,3 +26,9 @@ dataset.getColumns(function(columns){
 });
 
 ```
+
+Test
+
+```javascript
+node test/test.js
+```
